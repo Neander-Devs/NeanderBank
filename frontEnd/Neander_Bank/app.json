@@ -1,0 +1,10 @@
+{
+  "expo": {
+    "name": "Neander_Bank",
+    "slug": "Neander_Bank",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
