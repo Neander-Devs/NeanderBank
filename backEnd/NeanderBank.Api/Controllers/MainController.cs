@@ -22,11 +22,20 @@ namespace NeanderBank.Api.Controllers
         {
             if (!HasError())
             {
+                if (!string.IsNullOrEmpty(customMessage))
+                {
+                    return Ok(new
+                    {
+                        Success = true,
+                        CustomMessage = customMessage,
+                        Data = result
+                    });
+                }
+
                 return Ok(new
                 {
                     Success = true,
-                    Data = result,
-                    CustomMessage = customMessage ?? ""
+                    Data = result
                 });
             }
 

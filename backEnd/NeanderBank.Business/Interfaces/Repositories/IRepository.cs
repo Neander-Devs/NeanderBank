@@ -10,13 +10,14 @@ namespace NeanderBank.Business.Interfaces
 {
     public interface IRepository<TEntity> : IDisposable
     {
+        Task<IEnumerable<TEntity>> Get(Expression<Func<TEntity, bool>> predicate);
         Task<TEntity> GetById(int id);
+        Task<TEntity> GetByIdNoTracking(int id);
         Task<List<TEntity>> GetAll();
         Task<TEntity> Add(TEntity entity);
         Task<TEntity> Update(TEntity entity);
         Task Remove(int id);
         IQueryable<TEntity> GetQueryable();
-        Task<IEnumerable<TEntity>> Get(Expression<Func<TEntity, bool>> predicate);
         Task<int> SaveChanges();
     }
 }

@@ -34,13 +34,23 @@ namespace NeanderBank.Data.Repositories
         }
 
         /// <summary>
-        /// Gets an entity of type by the given Guid
+        /// Gets an entity of type by the given id
         /// </summary>
         /// <param name="id">The target entity's Id</param>
         /// <returns>The entity found or null if none</returns>
         public virtual async Task<TEntity> GetById(int id)
         {
             return await DbSet.FindAsync(id);
+        }
+
+        /// <summary>
+        /// Gets an entity of type by the given id as no tracking
+        /// </summary>
+        /// <param name="id">The target entity's Id</param>
+        /// <returns>The entity found or null if none</returns>
+        public virtual Task<TEntity> GetByIdNoTracking(int id)
+        {
+            return DbSet.AsNoTracking().FirstOrDefaultAsync(x => x.Id == id);
         }
 
         /// <summary>
