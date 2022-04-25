@@ -6,7 +6,7 @@ namespace NeanderBank.Api.Controllers
 {
     public abstract class MainController : ControllerBase
     {
-        private readonly IResponseService _responseService;
+        protected readonly IResponseService _responseService;
 
         protected MainController(IResponseService responseService)
         {

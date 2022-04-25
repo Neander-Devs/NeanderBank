@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using NeanderBank.Business.Interfaces.Repositories;
 using NeanderBank.Business.Interfaces.Services;
@@ -14,10 +15,12 @@ namespace NeanderBank.Api.Controllers
     [Route("api/costumer")]
     public class CostumerController : MainController
     {
+        private readonly IMapper _mapper;
         private readonly ICostumerService _costumerService;
         private readonly ICostumerRepository _costumerRepository;
-        public CostumerController(IResponseService responseService, ICostumerService costumerService, ICostumerRepository costumerRepository) : base(responseService)
+        public CostumerController(IMapper mapper, IResponseService responseService, ICostumerService costumerService, ICostumerRepository costumerRepository) : base(responseService)
         {
+            _mapper = mapper;
             _costumerService = costumerService;
             _costumerRepository = costumerRepository;
         }
@@ -37,13 +40,40 @@ namespace NeanderBank.Api.Controllers
         [HttpGet("{id:int}")]
         public async Task<ActionResult<Costumer>> GetById(int id)
         {
-            return CustomResponse(await _costumerRepository.GetByIdNoTracking(id));
+            return CustomResponse(await _costumerService.GetById(id));
         }
 
         [HttpPost]
         public async Task<ActionResult<Costumer>> PostCostumer([FromForm] CostumerDTO costumer)
         {
-            return CustomResponse(await _costumerRepository.GetByIdNoTracking(id));
+            if (costumer == null)
+            {
+                AddError("Objeto do cliente está nulo.");
+                return CustomResponse(costumer);
+            }
+
+            var _costumer = _mapper.Map<Costumer>(costumer);
+
+            return CustomResponse(await _costumerService.AddCostumer(_costumer));
+        }
+
+        [HttpPut("{id:int}")]
+        public async Task<ActionResult<Costumer>> PutCostumer(int id, [FromForm] CostumerDTO costumer)
+        {
+            if(costumer.Id != id)
+            {
+                _responseService.DivergentId(id, costumer.Id);
+                return CustomResponse(costumer);
+            }
+            if (costumer == null)
+            {
+                AddError("Objeto do cliente está nulo.");
+                return CustomResponse(costumer);
+            }
+
+            var _costumer = _mapper.Map<Costumer>(costumer);
+
+            return CustomResponse(await _costumerService.UpdateCostumer(_costumer));
         }
     }
 }

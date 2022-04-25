@@ -8,5 +8,8 @@ namespace NeanderBank.Business.Interfaces.Services
     {
         Task<Costumer> GetByCPF(string cpf);
         Task<Costumer> GetByAccount(string account);
+        Task<Costumer> GetById(int id);
+        Task<Costumer> AddCostumer(Costumer costumer);
+        Task<Costumer> UpdateCostumer(Costumer costumer);
     }
 }

@@ -20,6 +20,25 @@ namespace NeanderBank.Business.Services
             return message;
         }
 
+        public string NullValue(string[] nullValues)
+        {
+            string message = "Cliente possui valor obrigatório nulo:" + nullValues.Select(nv => $"\n-{nv}");
+            AddError(message);
+            return message;
+        }
+
+        public string TruncatedString(string[] truncatedStrings)
+        {
+            string message = "O limite máximo de caracteres foi excedido:" + truncatedStrings.Select(ts => $"\n{ts.Split(',')[0]} => Informado: {ts.Split(',')[1]}, Max: {ts.Split(',')[2]}");
+            AddError(message);
+            return message;
+        }
+
+
+
+
+
+
         public void AddError(string error)
         {
             _errors.Add(error);

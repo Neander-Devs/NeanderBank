@@ -20,7 +20,7 @@ namespace NeanderBank.Data.Repositories
         {
             return await DbSet.AsNoTracking()
                 .Include(c => c.Accounts)
-                .Where(c => cpf.Equals(c.CPF))
+                .Where(c => cpf.Equals(c.CPF) && c.IsActive)
                 .FirstOrDefaultAsync();
         }
 
@@ -28,7 +28,15 @@ namespace NeanderBank.Data.Repositories
         {
             return await DbSet.AsNoTracking()
                 .Include(c => c.Accounts)
-                .Where(c => c.Accounts.Any(a => account.Equals(a.Number)))
+                .Where(c => c.Accounts.Any(a => account.Equals(a.Number)) && c.IsActive)
+                .FirstOrDefaultAsync();
+        }
+
+        public async Task<Costumer> GetActiveById(int id)
+        {
+            return await DbSet.AsNoTracking()
+                .Include(c => c.Accounts)
+                .Where(c => id.Equals(c.Id) && c.IsActive)
                 .FirstOrDefaultAsync();
         }
     }

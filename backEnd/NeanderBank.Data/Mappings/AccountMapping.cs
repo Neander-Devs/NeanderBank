@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using NeanderBank.Business.Config;
 using NeanderBank.Business.Models;
 
 namespace NeanderBank.Data.Mappings
@@ -17,15 +18,15 @@ namespace NeanderBank.Data.Mappings
 
             builder.Property(d => d.Number)
                 .IsRequired()
-                .HasColumnType("varchar(8)");
+                .HasColumnType($"varchar({AppSettings.StringLengths[typeof(Account)][nameof(Account.Number)]})");
 
             builder.Property(d => d.Password)
                 .IsRequired()
-                .HasColumnType("varchar(8)");
+                .HasColumnType($"varchar({AppSettings.StringLengths[typeof(Account)][nameof(Account.Password)]})");
 
             builder.Property(d => d.Agency)
                 .IsRequired()
-                .HasColumnType("varchar(4)");
+                .HasColumnType($"varchar({AppSettings.StringLengths[typeof(Account)][nameof(Account.Agency)]})");
 
             builder.Property(d => d.Balance)
                 .IsRequired();
@@ -38,6 +39,10 @@ namespace NeanderBank.Data.Mappings
 
             builder.Property(d => d.UsingOverdraft)
                 .IsRequired();
+
+            builder.Property(d => d.IsActive)
+                .IsRequired()
+                .HasDefaultValue(true);
         }
     }
 }

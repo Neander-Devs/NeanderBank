@@ -1,6 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using NeanderBank.Business.Config;
 using NeanderBank.Business.Models;
+using System.Collections.Generic;
 
 namespace NeanderBank.Data.Mappings
 {
@@ -14,35 +16,39 @@ namespace NeanderBank.Data.Mappings
 
             builder.Property(d => d.Name)
                 .IsRequired()
-                .HasColumnType("varchar(100)");
+                .HasColumnType($"varchar({AppSettings.StringLengths[typeof(Costumer)][nameof(Costumer.Name)]})");
 
             builder.Property(d => d.CPF)
                 .IsRequired()
-                .HasColumnType("varchar(11)");
+                .HasColumnType($"varchar({AppSettings.StringLengths[typeof(Costumer)][nameof(Costumer.CPF)]})");
 
             builder.Property(d => d.Address)
                 .IsRequired()
-                .HasColumnType("varchar(100)");
+                .HasColumnType($"varchar({AppSettings.StringLengths[typeof(Costumer)][nameof(Costumer.Address)]})");
 
             builder.Property(d => d.Neighboorhood)
                 .IsRequired()
-                .HasColumnType("varchar(50)");
+                .HasColumnType($"varchar({AppSettings.StringLengths[typeof(Costumer)][nameof(Costumer.Neighboorhood)]})");
 
             builder.Property(d => d.City)
                 .IsRequired()
-                .HasColumnType("varchar(30)");
+                .HasColumnType($"varchar({AppSettings.StringLengths[typeof(Costumer)][nameof(Costumer.City)]})");
 
             builder.Property(d => d.State)
                 .IsRequired()
-                .HasColumnType("varchar(30)");
+                .HasColumnType($"varchar({AppSettings.StringLengths[typeof(Costumer)][nameof(Costumer.State)]})");
 
             builder.Property(d => d.CEP)
                 .IsRequired()
-                .HasColumnType("varchar(8)");
+                .HasColumnType($"varchar({AppSettings.StringLengths[typeof(Costumer)][nameof(Costumer.CEP)]})");
 
             builder.Property(d => d.BirthDate)
                 .IsRequired()
                 .HasColumnType("date");
+
+            builder.Property(d => d.IsActive)
+                .IsRequired()
+                .HasDefaultValue(true);
         }
     }
 }

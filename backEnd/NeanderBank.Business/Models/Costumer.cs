@@ -13,6 +13,7 @@ namespace NeanderBank.Business.Models
         public string City { get; set; }
         public string State { get; set; }
         public string CEP { get; set; }
+        public bool IsActive { get; set; }
         public IEnumerable<Account> Accounts { get; set; }
     }
 }   

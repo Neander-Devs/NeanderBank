@@ -35,6 +35,7 @@ namespace NeanderBank.Api
             });
             services.AddControllers();
             services.AddCors();
+            services.AddAutoMapper(typeof(Startup));
             services.AddDbContext<NeanderBankContext>(opt => opt.UseSqlServer("Data Source=localhost;Initial Catalog=NeanderBankDB;User Id=Admin;Password=qwerty123456"));
             services.ResolveDependencies();
             services.AddSwaggerGen(c =>

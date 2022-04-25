@@ -9,7 +9,7 @@ namespace NeanderBank.Business.Services
 {
     public class BaseService
     {
-        private readonly IResponseService _responseService;
+        protected readonly IResponseService _responseService;
 
         protected BaseService(IResponseService responseService)
         {

@@ -14,6 +14,7 @@ namespace NeanderBank.Business.Models
         public decimal MaxWithDraw { get; set; } //Saque máximo
         public decimal MaxOverdraft { get; set; } //Cheque especial máximo
         public decimal UsingOverdraft { get; set; } //Cheque especial em uso
+        public bool IsActive { get; set; }
 
         public IEnumerable<Transaction> Transactions { get; set; }
     }
