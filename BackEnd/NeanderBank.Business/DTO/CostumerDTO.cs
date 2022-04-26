@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace NeanderBank.Business.Models
 {
-    public class Costumer : Entity
+    public class CostumerDTO : Entity
     {
         public string Name { get; set; }
         public DateTime BirthDate { get; set; }
@@ -14,6 +14,5 @@ namespace NeanderBank.Business.Models
         public string State { get; set; }
         public string CEP { get; set; }
         public bool IsActive { get; set; }
-        public IEnumerable<Account> Accounts { get; set; }
     }
 }   
