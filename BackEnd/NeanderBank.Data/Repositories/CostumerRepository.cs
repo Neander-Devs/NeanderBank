@@ -32,9 +32,9 @@ namespace NeanderBank.Data.Repositories
                 .FirstOrDefaultAsync();
         }
 
-        public async Task<Costumer> GetActiveById(int id)
+        public async Task<Costumer> GetActiveById(int id, bool track = false)
         {
-            return await DbSet.AsNoTracking()
+            return await (track ? DbSet.AsTracking() : DbSet.AsNoTracking())
                 .Include(c => c.Accounts)
                 .Where(c => id.Equals(c.Id) && c.IsActive)
                 .FirstOrDefaultAsync();

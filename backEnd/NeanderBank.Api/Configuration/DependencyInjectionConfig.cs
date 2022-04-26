@@ -15,10 +15,12 @@ namespace NeanderBank.Api.Configuration
 
             services.AddScoped<ITransactionRepository, TransactionRepository>();
             services.AddScoped<ICostumerRepository, CostumerRepository>();
+            services.AddScoped<IAccountRepository, AccountRepository>();
             
             services.AddScoped<IResponseService, ResponseService>();
             services.AddScoped<ITransactionService, TransactionService>();
             services.AddScoped<ICostumerService, CostumerService>();
+            services.AddScoped<IAccountService, AccountService>();
             
 
             return services;

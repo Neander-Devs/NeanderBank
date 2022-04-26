@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using NeanderBank.Data.Context;
 
@@ -11,9 +12,10 @@ using NeanderBank.Data.Context;
 namespace NeanderBank.Data.Migrations
 {
     [DbContext(typeof(NeanderBankContext))]
-    partial class NeanderBankContextModelSnapshot : ModelSnapshot
+    [Migration("20220426150554_ChangedAccountNumber")]
+    partial class ChangedAccountNumber
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

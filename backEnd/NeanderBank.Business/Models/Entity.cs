@@ -29,7 +29,8 @@ namespace NeanderBank.Business.Models
 
         public string[] GetTruncatedStrings()
         {
-            var props = this.GetType().GetProperties().Where(p => p.GetType() == typeof(string));
+            var props = this.GetType().GetProperties().Where(p => p.PropertyType.Equals(typeof(string)));
+            var types = props.Select(p => p.PropertyType).ToArray();
             List<string> truncated = new List<string>();
             foreach (var prop in props)
             {

@@ -29,7 +29,7 @@ namespace NeanderBank.Business.Config
             } },
 
             {typeof(Account),new Dictionary<string, int>(){
-                {nameof(Account.Number), 8 },
+                {nameof(Account.Number), 9 },
                 {nameof(Account.Password), 8 },
                 {nameof(Account.Agency), 4 }
             } }

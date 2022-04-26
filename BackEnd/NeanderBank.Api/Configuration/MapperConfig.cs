@@ -9,6 +9,9 @@ namespace NeanderBank.Api.Configuration
         {
             CreateMap<CostumerDTO, Costumer>();
             CreateMap<Costumer, CostumerDTO>();
+
+            CreateMap<AccountDTO, Account>();
+            CreateMap<Account, AccountDTO>();
         }
     }
 }

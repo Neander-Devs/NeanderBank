@@ -33,7 +33,9 @@ namespace NeanderBank.Api
             {
                 options.AutomaticAuthentication = false;
             });
-            services.AddControllers();
+            services.AddControllers()
+                .AddNewtonsoftJson(options =>
+                options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
             services.AddCors();
             services.AddAutoMapper(typeof(Startup));
             services.AddDbContext<NeanderBankContext>(opt => opt.UseSqlServer("Data Source=localhost;Initial Catalog=NeanderBankDB;User Id=Admin;Password=qwerty123456"));

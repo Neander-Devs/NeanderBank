@@ -11,6 +11,6 @@ namespace NeanderBank.Business.Interfaces.Repositories
     {
         Task<Costumer> GetByCPF(string cpf);
         Task<Costumer> GetByAccount(string account);
-        Task<Costumer> GetActiveById(int id);
+        Task<Costumer> GetActiveById(int id, bool track = false);
     }
 }
